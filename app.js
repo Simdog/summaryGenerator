@@ -40,6 +40,23 @@ function promptManager () {
         }
     ]);
 }
+
+promptManager ()
+.then(function promptNextMemberType(){
+    return inquirer.prompt ([
+        {
+            type: "list",
+            name: "addMember",
+            message: "Which type of team member would you like to add?",
+            choices: ["Engineer", "Intern", "Done"]
+        }
+    ]);
+})
+.then (function(answers) {
+
+    
+})
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
