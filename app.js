@@ -53,8 +53,77 @@ promptManager ()
     ]);
 })
 .then (function(answers) {
+    if (answers.addMember === "Engineer") {
+        console.log("You have chosen engineer.");
+        inquirer 
+        .prompt([
+            {
+                type: "input",
+                name: "nameEng",
+                message: "What is your engineer's name?"
+            },
+            {
+                type: "input",
+                name: "idEng",
+                message: "What is your engineer's ID?"
+            },
+            {
+                type: "input",
+                name: "emailEng",
+                message: "What is your engineer's email?"
+            },
+            {
+                type: "input",
+                name: "github",
+                message: "What is your engineer's GitHub username?"
+            },
+            {
+                type: "list",
+                name: "addMember",
+                message: "Which type of team member would you like to add?",
+                choices: ["Engineer", "Intern", "Done"]
+            }
+        ])
+    } else if (answers.addMember === "Intern" ) {
+        console.log("You have chosen Intern.");
+        inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "nameInt",
+                message: "What is your intern's name?"
+            },
+            {
+                type: "input",
+                name: "idInt",
+                message: "What is your interns's ID?"
+            },
+            {
+                type: "input",
+                name: "emailInt",
+                message: "What is your intern's email?"
+            },
+            {
+                type: "input",
+                name: "school",
+                message: "What is your intern's school?"
+            },
+            {
+                type: "list",
+                name: "addMember",
+                message: "Which type of team member would you like to add?",
+                choices: ["Engineer", "Intern", "Done"]
+            }
+        ])
 
-    
+    } else {
+        console.log("Your team has succesfully been created!");
+        return;
+    }
+})
+
+.catch(function(err){
+    console.log(err);
 })
 
 // After the user has input all employees desired, call the `render` function (required
