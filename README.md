@@ -5,4 +5,4 @@ This application generates a team member list and pushes it to a website. It pro
 ![program running](Assets/workingapp.gif)
 
 
-![program working](Asset/working.PNG)
+![program working](Assets/working.PNG)
