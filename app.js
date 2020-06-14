@@ -48,6 +48,8 @@ const team = [];
 const runMain = async () => {
     await ask();
 
+    const 
+
 
 
 }
@@ -73,7 +75,7 @@ const ask = async () => {
             let a = myEmployee.concat(toPush);
             let answ = await inquirer.prompt(a);
             done = answ.done;
-            
+            runManager(answ);
             break;
         case "Engineer": 
             let toPush = [{
@@ -101,6 +103,12 @@ const ask = async () => {
     }
 
     return;
+
+}
+
+const runManager = (m) => {
+    const man =  new Manager(m.name, m.id, m.email, m.officeNumber);
+    team.push(man);
 
 }
 
