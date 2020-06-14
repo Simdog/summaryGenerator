@@ -26,7 +26,7 @@ const myMemberType = [{
     ]
 }]
 
-const myMemberEmployee = [{
+const myEmployee = [{
     type: "input",
     name: "name",
     message: "What's the name of your employee?"
@@ -53,8 +53,8 @@ const runMain = async () => {
 }
 
 const ask = async () => {
-    var key = await inquirer.prompt(myMemberType);
-    var done = "Yes";
+    let key = await inquirer.prompt(myMemberType);
+    let done = "Yes";
     switch (key.memberType) {
         case "Manager":
             var toPush = [{
@@ -70,42 +70,58 @@ const ask = async () => {
                     "No"
                 ]
             }]
+            let a = myEmployee.concat(toPush);
+            let answ = await inquirer.prompt(a);
+            done = answ.done;
+            
+            break;
+            
 
 
     }
     if (done === "No") {
         await ask();
     }
-    
+
     return;
 
 }
 
-function promptManager () {
-    return inquirer.prompt([
-        {
-        type: "input",
-        name: "nameManager",
-        message: "What is the manager's name?"    
-        },
+
+
+
+
+
+
+
+runMain();
+
+
+// function promptManager () {
+//     return inquirer.prompt([
+//         {
+//         type: "input",
+//         name: "nameManager",
+//         message: "What is the manager's name?"    
+//         },
         
-        {
-        type: "input",
-        name: "idManager",
-        message: "What is the manager's ID?"    
-        },
-        {
-        type: "input",
-        name: "emailManager",
-        message: "What is the manager's email?"    
-        },
-        {
-        type: "input",
-        name: "office",
-        message: "What is the manager's office number?"    
-        }
-    ]);
-}
+//         {
+//         type: "input",
+//         name: "idManager",
+//         message: "What is the manager's ID?"    
+//         },
+//         {
+//         type: "input",
+//         name: "emailManager",
+//         message: "What is the manager's email?"    
+//         },
+//         {
+//         type: "input",
+//         name: "office",
+//         message: "What is the manager's office number?"    
+//         }
+//     ]);
+// }
 
 promptManager ()
 .then(function promptNextMemberType(){
