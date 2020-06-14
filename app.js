@@ -17,7 +17,7 @@ console.log("Answer the questions to create your team's profile");
 
 const myMemberType = [{
     type: "input",
-    message: "Team member Type:",
+    message: "Team member Type:",  
     name: "memberType",
     choices: [
         "Intern",
@@ -48,18 +48,24 @@ const team = [];
 const runMain = async () => {
     await ask();
 
-    const 
+    const htmlBlock = await render(team);
+    fs.writeFile ( outputPath, htmlBlock, function (err) {
+
+        if (err) {
+            return console.log("It failed to write to the file ERROR message below: \n", err)
+        }
+    })
 
 
 
 }
 
 const ask = async () => {
-    let key = await inquirer.prompt(myMemberType);
-    let done = "Yes";
+    var key = await inquirer.prompt(myMemberType);
+    var done = "Yes";
     switch (key.memberType) {
         case "Manager":
-            let toPush = [{
+            var toPush = [{
                 type: "input",
                 name: "officeNumber",
                 message: "What's the office number of the manager?"
@@ -72,13 +78,13 @@ const ask = async () => {
                     "No"
                 ]
             }]
-            let a = myEmployee.concat(toPush);
-            let answ = await inquirer.prompt(a);
+            var a = myEmployee.concat(toPush);
+            var answ = await inquirer.prompt(a);
             done = answ.done;
             runManager(answ);
             break;
         case "Engineer": 
-            let toPush = [{
+            var toPush = [{
                 type: "input",
                 name: "github",
                 message: "What's the github username of the engineer?"
@@ -91,10 +97,33 @@ const ask = async () => {
                     "No"
                 ]
             }]
-            let a = myEmployee.concat(toPush);
-            let answ = await inquirer.prompt(a);
+            var a = myEmployee.concat(toPush);
+            var answ = await inquirer.prompt(a);
             done = answ.done;
             runEngineer (answ);
+            break;
+        case "Intern":
+            var toPush = [{
+                type: "input",
+                name: "school",
+                message: "What's the school of the intern?"
+            }, {
+                type: "list",
+                message: "Done entering team members school?",
+                name: "done",
+                choices: [
+                    "Yes",
+                    "No"
+                ]
+            }]
+            var a = myEmployee.concat(toPush);
+            var answ = await inquirer.prompt(a);
+            done = answ.done;
+            runIntern(answ);
+            break;
+
+        default:
+            break;
                         
 
 
@@ -154,90 +183,90 @@ runMain();
 //     ]);
 // }
 
-promptManager ()
-.then(function promptNextMemberType(){
-    return inquirer.prompt ([
-        {
-            type: "list",
-            name: "addMember",
-            message: "Which type of team member would you like to add?",
-            choices: ["Engineer", "Intern", "Done"]
-        }
-    ]);
-})
-.then (function(answers) {
-    if (answers.addMember === "Engineer") {
-        console.log("You have chosen engineer.");
-        inquirer 
-        .prompt([
-            {
-                type: "input",
-                name: "nameEng",
-                message: "What is your engineer's name?"
-            },
-            {
-                type: "input",
-                name: "idEng",
-                message: "What is your engineer's ID?"
-            },
-            {
-                type: "input",
-                name: "emailEng",
-                message: "What is your engineer's email?"
-            },
-            {
-                type: "input",
-                name: "github",
-                message: "What is your engineer's GitHub username?"
-            },
-            {
-                type: "list",
-                name: "addMember",
-                message: "Which type of team member would you like to add?",
-                choices: ["Engineer", "Intern", "Done"]
-            }
-        ])
-    } else if (answers.addMember === "Intern" ) {
-        console.log("You have chosen Intern.");
-        inquirer
-        .prompt([
-            {
-                type: "input",
-                name: "nameInt",
-                message: "What is your intern's name?"
-            },
-            {
-                type: "input",
-                name: "idInt",
-                message: "What is your interns's ID?"
-            },
-            {
-                type: "input",
-                name: "emailInt",
-                message: "What is your intern's email?"
-            },
-            {
-                type: "input",
-                name: "school",
-                message: "What is your intern's school?"
-            },
-            {
-                type: "list",
-                name: "addMember",
-                message: "Which type of team member would you like to add?",
-                choices: ["Engineer", "Intern", "Done"]
-            }
-        ])
+// promptManager ()
+// .then(function promptNextMemberType(){
+//     return inquirer.prompt ([
+//         {
+//             type: "list",
+//             name: "addMember",
+//             message: "Which type of team member would you like to add?",
+//             choices: ["Engineer", "Intern", "Done"]
+//         }
+//     ]);
+// })
+// .then (function(answers) {
+//     if (answers.addMember === "Engineer") {
+//         console.log("You have chosen engineer.");
+//         inquirer 
+//         .prompt([
+//             {
+//                 type: "input",
+//                 name: "nameEng",
+//                 message: "What is your engineer's name?"
+//             },
+//             {
+//                 type: "input",
+//                 name: "idEng",
+//                 message: "What is your engineer's ID?"
+//             },
+//             {
+//                 type: "input",
+//                 name: "emailEng",
+//                 message: "What is your engineer's email?"
+//             },
+//             {
+//                 type: "input",
+//                 name: "github",
+//                 message: "What is your engineer's GitHub username?"
+//             },
+//             {
+//                 type: "list",
+//                 name: "addMember",
+//                 message: "Which type of team member would you like to add?",
+//                 choices: ["Engineer", "Intern", "Done"]
+//             }
+//         ])
+//     } else if (answers.addMember === "Intern" ) {
+//         console.log("You have chosen Intern.");
+//         inquirer
+//         .prompt([
+//             {
+//                 type: "input",
+//                 name: "nameInt",
+//                 message: "What is your intern's name?"
+//             },
+//             {
+//                 type: "input",
+//                 name: "idInt",
+//                 message: "What is your interns's ID?"
+//             },
+//             {
+//                 type: "input",
+//                 name: "emailInt",
+//                 message: "What is your intern's email?"
+//             },
+//             {
+//                 type: "input",
+//                 name: "school",
+//                 message: "What is your intern's school?"
+//             },
+//             {
+//                 type: "list",
+//                 name: "addMember",
+//                 message: "Which type of team member would you like to add?",
+//                 choices: ["Engineer", "Intern", "Done"]
+//             }
+//         ])
 
-    } else {
-        console.log("Your team has succesfully been created!");
-        return;
-    }
-})
+//     } else {
+//         console.log("Your team has succesfully been created!");
+//         return;
+//     }
+// })
 
-.catch(function(err){
-    console.log(err);
-})
+// .catch(function(err){
+//     console.log(err);
+// })
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
