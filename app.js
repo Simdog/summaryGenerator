@@ -11,13 +11,9 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 
-
-console.log("Welcome to your team creation");
-console.log("Answer the questions to create your team's profile");
-
 const myMemberType = [{
-    type: "input",
-    message: "Team member Type:",  
+    type: "list",
+    message: "Team member Type:",
     name: "memberType",
     choices: [
         "Intern",
@@ -147,8 +143,7 @@ const runEngineer = (m) => {
 
 }
 const runIntern = (m) => {
-    const man =  new Intern(m.name, m.id, m.email, m.officeNumber);
-    team.push(man);
+    team.push(new Intern(m.name, m.id, m.email, m.school));
 
 }
 
