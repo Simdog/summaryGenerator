@@ -15,7 +15,7 @@ const render = require("./lib/htmlRenderer");
 console.log("Welcome to your team creation");
 console.log("Answer the questions to create your team's profile");
 
-const memberType = [{
+const myMemberType = [{
     type: "input",
     message: "Team member Type:",
     name: "memberType",
@@ -25,6 +25,62 @@ const memberType = [{
         "Manager",
     ]
 }]
+
+const myMemberEmployee = [{
+    type: "input",
+    name: "name",
+    message: "What's the name of your employee?"
+}, 
+{
+    type: "input",
+    name: "id",
+    message: "What's the ID of your employee?"
+},
+{
+    type: "input",
+    name: "email",
+    message: "What's the Email of your employee?"
+}]
+
+const team = [];
+
+
+const runMain = async () => {
+    await ask();
+
+
+
+}
+
+const ask = async () => {
+    var key = await inquirer.prompt(myMemberType);
+    var done = "Yes";
+    switch (key.memberType) {
+        case "Manager":
+            var toPush = [{
+                type: "input",
+                name: "officeNumber",
+                message: "What's the office number of the manager?"
+            }, {
+                type: "list",
+                message: "Done entering team members office number?",
+                name: "done",
+                choices: [
+                    "Yes",
+                    "No"
+                ]
+            }]
+
+
+    }
+    if (done === "No") {
+        await ask();
+    }
+    
+    return;
+
+}
+
 function promptManager () {
     return inquirer.prompt([
         {
