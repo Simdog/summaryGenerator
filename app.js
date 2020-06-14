@@ -11,10 +11,20 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+
 console.log("Welcome to your team creation");
 console.log("Answer the questions to create your team's profile");
+
+const memberType = [{
+    type: "input",
+    message: "Team member Type:",
+    name: "memberType",
+    choices: [
+        "Intern",
+        "Engineer",
+        "Manager",
+    ]
+}]
 function promptManager () {
     return inquirer.prompt([
         {
