@@ -57,7 +57,7 @@ const ask = async () => {
     let done = "Yes";
     switch (key.memberType) {
         case "Manager":
-            var toPush = [{
+            let toPush = [{
                 type: "input",
                 name: "officeNumber",
                 message: "What's the office number of the manager?"
@@ -75,7 +75,24 @@ const ask = async () => {
             done = answ.done;
             
             break;
-            
+        case "Engineer": 
+            let toPush = [{
+                type: "input",
+                name: "github",
+                message: "What's the github username of the engineer?"
+            }, { 
+                type: "list",
+                message: "Done entering team members github?",
+                name: "done",
+                choices: [
+                    "Yes",
+                    "No"
+                ]
+            }]
+            let a = myEmployee.concat(toPush);
+            let answ = await inquirer.prompt(a);
+            done = answ.done;
+                        
 
 
     }
