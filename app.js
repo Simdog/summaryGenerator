@@ -94,6 +94,7 @@ const ask = async () => {
             let a = myEmployee.concat(toPush);
             let answ = await inquirer.prompt(a);
             done = answ.done;
+            runEngineer (answ);
                         
 
 
@@ -111,11 +112,16 @@ const runManager = (m) => {
     team.push(man);
 
 }
+const runEngineer = (m) => {
+    const man =  new Engineer(m.name, m.id, m.email, m.officeNumber);
+    team.push(man);
 
+}
+const runIntern = (m) => {
+    const man =  new Intern(m.name, m.id, m.email, m.officeNumber);
+    team.push(man);
 
-
-
-
+}
 
 
 
